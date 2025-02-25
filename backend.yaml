@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: project-plato
+  name: backend
+  labels:
+    app: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - image: busybox:1.32.0
+          command: ['sh', '-c', 'tail -f /dev/null']
+          imagePullPolicy: IfNotPresent
+          name: busybox
+          securityContext:
+            readOnlyRootFilesystem: true
+          volumeMounts:
+            - mountPath: /tmp
+              name: tmp-vol
+      volumes:
+        - name: tmp-vol
+          emptyDir: {}       
+      restartPolicy: Always
