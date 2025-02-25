@@ -25,6 +25,16 @@ spec:
           volumeMounts:
             - mountPath: /tmp
               name: tmp-vol
+          livenessProbe:
+            exec:
+              command: ["true"]
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          readinessProbe:
+            tcpSocket:
+              port: 6379
+            initialDelaySeconds: 5
+            periodSeconds: 10              
       volumes:
         - name: tmp-vol
           emptyDir: {}       
