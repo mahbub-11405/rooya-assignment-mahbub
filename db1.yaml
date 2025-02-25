@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: project-plato
+  name: db1
+  labels:
+    app: db1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db1
+  template:
+    metadata:
+      labels:
+        app: db1
+    spec:
+      containers:
+        - image: nginx:1.16.1-alpine
+          name: nginx
+          ports:
+            - containerPort: 80
+      restartPolicy: Always
