@@ -19,5 +19,5 @@ spec:
         - image: nginx:1.16.1-alpine
           name: nginx
           ports:
-            - containerPort: 80
+            - containerPort: 6379
       restartPolicy: Always

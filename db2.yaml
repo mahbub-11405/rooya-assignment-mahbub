@@ -19,5 +19,16 @@ spec:
         - image: nginx:1.16.1-alpine
           name: nginx
           ports:
-            - containerPort: 80
+            - containerPort: 5432
+          env:
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: db2-secret
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db2-secret
+                  key: password
       restartPolicy: Always
